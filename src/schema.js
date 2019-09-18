@@ -169,31 +169,31 @@ class Schema {
 //
 // console.log('Nested test: \n', testObj4);
 //
-const schema3 = new Schema({
-    a: [
-        {
-            b: {
-                type: Number,
-                default: 10
-            },
-            c: String,
-            h: {
-                f: String,
-                g: Boolean,
-            }
-        }
-    ],
-    d: [Number]
-});
-
-const testObj5 = schema3.cast({
-    a: [
-        {
-            b: '100'
-        }
-    ]
-});
-
-console.log('Array nested test: \n', testObj5);
+// const schema3 = new Schema({
+//     a: [
+//         {
+//             b: {
+//                 type: Number,
+//                 default: 10
+//             },
+//             c: String,
+//             h: {
+//                 f: String,
+//                 g: Boolean,
+//             }
+//         }
+//     ],
+//     d: [Number]
+// });
+//
+// const testObj5 = schema3.cast({
+//     a: [
+//         {
+//             b: '100'
+//         }
+//     ]
+// });
+//
+// console.log('Array nested test: \n', testObj5);
 
 module.exports = Schema;
