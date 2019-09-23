@@ -1,4 +1,4 @@
-module.exports = function castString(value, path) {
+module.exports = function castString(value) {
     if (value == null) {
         return value;
     }
