@@ -278,103 +278,103 @@ class Schema {
 //
 // console.log('Array nested test: \n', testObj5);
 
-const schema4 = new Schema({
-    a: [
-        {
-            b: {
-                type: Number,
-                default: 10,
-                require: true,
-                min: 0,
-                max: 100
-            },
-            c: {
-                type: String,
-                minlength: 3,
-                maxlength: 20,
-                enum: ['true', 'false']
-            },
-            h: {
-                f: String,
-                g: Boolean,
-            }
-        }
-    ],
-    d: [Number]
-});
-
-const testObj6 = {
-    a: [
-        {
-            b: '10',
-            c: 'dfasdf',
-        },
-        {
-            b: '100',
-            c: true
-        },
-        {
-            b: '1',
-            c: 'abc'
-        },
-        {
-            b: 100,
-            c: false
-        }
-    ],
-    d: ['13', true, false]
-};
-
-console.log(schema4.cast2(testObj6));
-console.log(schema4.validate(testObj6));
-
-const schema5 = new Schema({
-   a: {
-       b: [
-           {
-               c: [
-                   {
-                       d: Number,
-                       e: String
-                   }
-               ],
-               f: Boolean
-           }
-       ],
-       g: Number
-   },
-   h:[Number]
-});
-
-const testObj7 = {
-    a: {
-        b: [
-            {
-                c: [
-                    {
-                        d : '10'
-                    },
-                    {
-                        e: 'dafsdf'
-                    }
-                ]
-            },
-            {
-                c: [
-                    {
-                        d : 2134
-                    },
-                    {
-                        e: 'dafs'
-                    }
-                ]
-            }
-        ]
-    },
-    h: ['10', '20', true, false]
-};
-
-testObj8 = schema5.cast2(testObj7);
-console.log(testObj8);
+// const schema4 = new Schema({
+//     a: [
+//         {
+//             b: {
+//                 type: Number,
+//                 default: 10,
+//                 require: true,
+//                 min: 0,
+//                 max: 100
+//             },
+//             c: {
+//                 type: String,
+//                 minlength: 3,
+//                 maxlength: 20,
+//                 enum: ['true', 'false']
+//             },
+//             h: {
+//                 f: String,
+//                 g: Boolean,
+//             }
+//         }
+//     ],
+//     d: [Number]
+// });
+//
+// const testObj6 = {
+//     a: [
+//         {
+//             b: '10',
+//             c: 'dfasdf',
+//         },
+//         {
+//             b: '100',
+//             c: true
+//         },
+//         {
+//             b: '1',
+//             c: 'abc'
+//         },
+//         {
+//             b: 100,
+//             c: false
+//         }
+//     ],
+//     d: ['13', true, false]
+// };
+//
+// console.log(schema4.cast2(testObj6));
+// console.log(schema4.validate(testObj6));
+//
+// const schema5 = new Schema({
+//    a: {
+//        b: [
+//            {
+//                c: [
+//                    {
+//                        d: Number,
+//                        e: String
+//                    }
+//                ],
+//                f: Boolean
+//            }
+//        ],
+//        g: Number
+//    },
+//    h:[Number]
+// });
+//
+// const testObj7 = {
+//     a: {
+//         b: [
+//             {
+//                 c: [
+//                     {
+//                         d : '10'
+//                     },
+//                     {
+//                         e: 'dafsdf'
+//                     }
+//                 ]
+//             },
+//             {
+//                 c: [
+//                     {
+//                         d : 2134
+//                     },
+//                     {
+//                         e: 'dafs'
+//                     }
+//                 ]
+//             }
+//         ]
+//     },
+//     h: ['10', '20', true, false]
+// };
+//
+// testObj8 = schema5.cast2(testObj7);
+// console.log(testObj8);
 
 module.exports = Schema;

@@ -59,6 +59,102 @@ describe('Schema', function () {
             assert.strictEqual(testObj.d[0], 0);
         })
     });
-    // describe('Cast', function () {
-    // })
+     describe('Cast', function () {
+         it("Cast functions on elements of array", function () {
+             const schema = new Schema({
+                 a: [Number],
+                 b: [String],
+                 c: [Boolean]
+             });
+
+             const testObj = {
+                 a: ['10', true, false],
+                 b: [10, true, false],
+                 c: [1, 'yes', 0, 'no']
+             };
+
+             const castedObj = schema.cast2(testObj);
+
+             assert.strictEqual(castedObj.a[0], 10);
+             assert.strictEqual(castedObj.a[1], 1);
+             assert.strictEqual(castedObj.a[2], 0);
+             assert.strictEqual(castedObj.b[0], '10');
+             assert.strictEqual(castedObj.b[1], 'true');
+             assert.strictEqual(castedObj.b[2], 'false');
+             assert.strictEqual(castedObj.c[0], true);
+             assert.strictEqual(castedObj.c[1], true);
+             assert.strictEqual(castedObj.c[2], false);
+             assert.strictEqual(castedObj.c[3], false);
+         })
+     });
+    describe('Validate',function () {
+        it('min', function() {
+            const schema = new Schema({
+                a: {
+                    type: Number,
+                    min: 10
+                }
+            });
+
+            assert.strictEqual(schema.validate({a: 20}), true);
+            assert.throws(() => schema.validate({a: 5}), Error);
+        });
+        it('max', function() {
+            const schema = new Schema({
+                a: {
+                    type: Number,
+                    max: 10
+                }
+            });
+
+            assert.strictEqual(schema.validate({a: 5}), true);
+            assert.throws(() => schema.validate({a: 20}), Error);
+        });
+        it('minlength', function(){
+            const schema = new Schema({
+                a: {
+                    type: String,
+                    minlength: 5
+                }
+            });
+
+            assert.strictEqual(schema.validate({a: 'hello'}), true);
+            assert.throws(() => schema.validate({a: 'ok'}), Error);
+        });
+        it('maxlength', function(){
+            const schema = new Schema({
+                a: {
+                    type: String,
+                    maxlength: 5
+                }
+            });
+
+            assert.strictEqual(schema.validate({a: 'hello'}), true);
+            assert.throws(() => schema.validate({a: 'hello world'}), Error);
+        });
+        it('enum', function(){
+            const schema = new Schema({
+                a: {
+                    type: String,
+                    enum: ['hi', 'hello', 'aloha']
+                }
+            });
+
+            assert.strictEqual(schema.validate({a: 'hi'}), true);
+            assert.strictEqual(schema.validate({a: 'hello'}), true);
+            assert.strictEqual(schema.validate({a: 'aloha'}), true);
+            assert.throws(() => schema.validate({a: 'hello world'}), Error);
+        });
+        it('match', function() {
+            const schema = new Schema({
+                a: {
+                    type: String,
+                    match: 'hello'
+                }
+            });
+
+            assert.strictEqual(schema.validate({a: 'hello world'}), true);
+            assert.throws(() => schema.validate({a: 'hi world'}), Error);
+        });
+    })
 });
